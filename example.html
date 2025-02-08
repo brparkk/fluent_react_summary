@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="list-parent"></ul>
+    <form id="add-item-form">
+      <input type="text" id="new-list-item-model" />
+      <button type="submit">submit</button>
+    </form>
+  </body>
+  <script>
+    (function myApp() {
+      var listItems = ["apple", "banana", "orange"];
+      var parentList = document.getElementById("list-parent");
+      var addForm = document.getElementById("add-item-form");
+      var newListItemModel = document.getElementById("new-list-item-model");
+
+      addForm.onsubmit = function (event) {
+        event.preventDefault();
+        listItems.push(newListItemModel.value);
+      };
+
+      function renderListItem() {
+        parentList.innerHTML = "";
+        for (var i = 0; i < listItems.length; i++) {
+          var el = document.createElement("li");
+          el.textContent = listItems[i];
+          parentList.appendChild(el);
+        }
+      }
+
+      renderListItem();
+    })();
+  </script>
+</html>
